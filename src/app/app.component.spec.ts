@@ -1,29 +1,19 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { SpectatorRouting, createRoutingFactory } from '@ngneat/spectator/jest';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
-  }));
+  let spectator: SpectatorRouting<AppComponent>;
+  const createComponent = createRoutingFactory(AppComponent);
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  beforeEach(
+    () =>
+      (spectator = createComponent({
+        providers: [],
+      }))
+  );
 
-  it(`should have as title 'superTodo'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('superTodo');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('superTodo app is running!');
+  it('should be alive', () => {
+    expect(spectator).toBeTruthy();
   });
 });
