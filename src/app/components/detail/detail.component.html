@@ -1,0 +1,84 @@
+<nz-form-item *ngIf="formCtrlName">
+  <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name"
+    >task name</nz-form-label
+  >
+  <nz-form-control [nzSm]="14" [nzXs]="24">
+    <input
+      nz-input
+      [formControl]="formCtrlName"
+      id="name"
+      [nzStatus]="formCtrlName.valid ? '' : 'error'"
+    />
+  </nz-form-control>
+</nz-form-item>
+
+<nz-form-item *ngIf="!todo?._id && formCtrlType">
+  <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="controlType"
+    >type</nz-form-label
+  >
+  <nz-form-control [nzSm]="14" [nzXs]="24">
+    <nz-select
+      nzShowSearch
+      [formControl]="formCtrlType"
+      id="controlType"
+      [nzStatus]="formCtrlType.valid ? '' : 'error'"
+    >
+      <nz-option
+        *ngFor="let item of formTypes"
+        [nzValue]="item"
+        [nzLabel]="item | dashToNormal"
+      ></nz-option>
+    </nz-select>
+  </nz-form-control>
+</nz-form-item>
+
+<form nz-form [formGroup]="formFieldsGroup" *ngIf="formFieldsGroup">
+  <nz-form-item *ngFor="let field of formFields">
+    <ng-container [ngSwitch]="field.type">
+      <ng-container *ngSwitchCase="'number'">
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzFor]="field.key">{{
+          field.key | camelToNormal
+        }}</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <nz-input-number
+            [formControlName]="field.key"
+            [nzStatus]="
+              formFieldsGroup.controls[field.key].valid ? '' : 'error'
+            "
+          />
+        </nz-form-control>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired [nzFor]="field.key">{{
+          field.key
+        }}</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input
+            nz-input
+            [formControlName]="field.key"
+            [id]="field.key"
+            [nzStatus]="
+              formFieldsGroup.controls[field.key].valid ? '' : 'error'
+            "
+          />
+        </nz-form-control>
+      </ng-container>
+    </ng-container>
+  </nz-form-item>
+</form>
+
+<div class="controls">
+  <button
+    nz-button
+    (click)="saveForm()"
+    [disabled]="!formFieldsGroup.valid"
+    [nzLoading]="loading$ | async"
+  >
+    <span nz-icon nzType="save"></span>
+    Save
+  </button>
+  <button nz-button [routerLink]="['/']">
+    <span nz-icon nzType="close"></span>
+    Stash
+  </button>
+</div>
