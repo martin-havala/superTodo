@@ -5,4 +5,9 @@ describe('CamelToNormalPipe', () => {
     const pipe = new CamelToNormalPipe();
     expect(pipe).toBeTruthy();
   });
+
+  it('should change camel case', () => {
+    const pipe = new CamelToNormalPipe();
+    expect(pipe.transform('thisIsTheTest')).toEqual("this is the test");
+  });
 });

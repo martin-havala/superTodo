@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DashToNormalPipe implements PipeTransform {
   transform(value: string): string {
-    return value.replaceAll(/-/g, ' ') ?? '';
+    return value.replace(/-/g, ' ') ?? '';
   }
 }

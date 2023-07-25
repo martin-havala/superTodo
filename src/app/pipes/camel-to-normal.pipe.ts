@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CamelToNormalPipe implements PipeTransform {
 
   transform(value: string): string {
-    return value.replaceAll(/([A-Z])/g,' $1').toLocaleLowerCase();
+    return value.replace(/([A-Z])/g,' $1').toLocaleLowerCase();
   }
 
 }
