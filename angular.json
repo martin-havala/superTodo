@@ -24,7 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/.nojekyll", "src/assets"],
-            "styles": ["src/theme.less", "src/styles.less"],
+            "styles": ["node_modules/ng-zorro-antd/ng-zorro-antd.less", "src/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -32,7 +32,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "750kb",
                   "maximumError": "1.5mb"
                 },
                 {

@@ -1,7 +1,6 @@
 module.exports = {
   preset: "jest-preset-angular",
-  collectCoverage: false,
+  collectCoverage: true,
   testMatch: ['**/+(*.)+(spec).+(ts)'],
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
-  globalSetup: 'jest-preset-angular/global-setup',
 };
